@@ -48,5 +48,6 @@ if __name__ == "__main__":
 		body = msg.get_payload(decode=True).decode()
 		url = get_house_url(body)
 		# now scrape the url (ex: 'https://www.casa.it/immobili/45454130' )
+		# read from config.json
 	connection.close()
 	connection.logout()

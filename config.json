@@ -1,0 +1,24 @@
+{
+  "websites": [
+    {
+      "name": "casa",
+      "mailbox": "CasaIT",
+      "url_pattern": "https://www\\.casa\\.it/immobili/\\d*"
+    },
+    {
+      "name": "immobiliare",
+      "mailbox": "",
+      "url_pattern": ""
+    },
+    {
+      "name": "idealista",
+      "mailbox": "",
+      "url_pattern": ""
+    },
+    {
+      "name": "subito",
+      "mailbox": "",
+      "url_pattern": ""
+    }
+  ]
+}
