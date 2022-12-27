@@ -10,4 +10,6 @@ EMAIL_PASSWORD=<your password>
 ```
 
 ## Dependencies
+Install the dependencies using the [requirements](requirements.txt) file, or individually:
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
+- [selenium](https://pypi.org/project/selenium/)
