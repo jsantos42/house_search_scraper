@@ -11,9 +11,11 @@ from email.header import decode_header
 import re
 
 
-def get_house_url(email_body):
+def get_house_urls(email_body):
 	pattern = re.compile(r'https://www\.casa\.it/immobili/\d*')
-	return pattern.findall(email_body)[0]
+	urls_list = []
+	[urls_list.append(x) for x in re.findall(pattern, email_body) if x not in urls_list]
+	return urls_list
 
 
 def get_header_data(email_msg, key):
@@ -46,8 +48,13 @@ if __name__ == "__main__":
 		subject = get_header_data(msg, "Subject")
 		sender = get_header_data(msg, "From")
 		body = msg.get_payload(decode=True).decode()
-		url = get_house_url(body)
-		# now scrape the url (ex: 'https://www.casa.it/immobili/45454130' )
+		urls = get_house_urls(body)
+		# now scrape the urls (ex: 'https://www.casa.it/immobili/45454130' )
 		# read from config.json
 	connection.close()
 	connection.logout()
+
+	# with open('body.txt') as file:
+	# 	urls = get_house_urls(file.read())
+	# 	print(urls)
+
