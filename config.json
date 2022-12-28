@@ -1,24 +1,20 @@
 {
-  "websites": [
-    {
-      "name": "casa",
+  "websites": {
+    "casa_it": {
       "mailbox": "CasaIT",
       "url_pattern": "https://www\\.casa\\.it/immobili/\\d*"
     },
-    {
-      "name": "immobiliare",
-      "mailbox": "",
+    "immobiliare": {
+      "mailbox": "Immobiliare",
       "url_pattern": ""
     },
-    {
-      "name": "idealista",
-      "mailbox": "",
+    "idealista": {
+      "mailbox": "Idealista",
       "url_pattern": ""
     },
-    {
-      "name": "subito",
-      "mailbox": "",
+    "subito": {
+      "mailbox": "Subito",
       "url_pattern": ""
     }
-  ]
+  }
 }
