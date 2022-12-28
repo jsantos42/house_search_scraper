@@ -32,3 +32,5 @@ if __name__ == "__main__":
 	connection = init_connection(user, secret)
 	config_data = read_config()
 	check_mailbox(connection, config_data['casa_it'])
+	# for website in config_data:
+	# 	check_mailbox(connection, config_data[website])
