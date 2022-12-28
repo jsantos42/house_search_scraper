@@ -13,3 +13,4 @@ EMAIL_PASSWORD=<your password>
 Install the dependencies using the [requirements](requirements.txt) file, or individually:
 - [python-dotenv](https://pypi.org/project/python-dotenv/)
 - [selenium](https://pypi.org/project/selenium/)
+- [webdriver-manager](https://pypi.org/project/webdriver-manager/)
