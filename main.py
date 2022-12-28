@@ -1,7 +1,3 @@
-# Sources:
-# https://www.geeksforgeeks.org/pattern-matching-python-regex/
-# https://www.thepythoncode.com/article/reading-emails-in-python
-
 import os
 from dotenv import load_dotenv
 import imaplib
