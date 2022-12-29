@@ -6,21 +6,47 @@ from selenium.common.exceptions import (NoSuchElementException)
 import re
 
 
+# xPaths could go in config.json
+
 def scrape_casa_it(driver):
     # Wait for the page to load the captcha
     driver.implicitly_wait(7)
 
     # Title
-    title = driver.find_element(By.XPATH, '//h1[@class="infos__H1"]').text
+    try:
+        title = driver.find_element(By.XPATH, '//h1[@class="infos__H1"]').text
+    except NoSuchElementException as err:
+        print(err)
+        title = ''
 
-    # Infos
-    price = driver.find_element(By.XPATH, '//li[@class="infos__list__price"]').text
-    area = driver.find_element(By.XPATH, '//li[@class="infos__list__item is-rel"]').text
-    room_count = driver.find_element(By.XPATH, '//li[@class="infos__list__item is-rel infos__list__item--mlast"]').text
+    # Price
+    try:
+        price = driver.find_element(By.XPATH, '//li[@class="infos__list__price"]').text
+    except NoSuchElementException as err:
+        print(err)
+        price = ''
+
+    # Area
+    try:
+        area = driver.find_element(By.XPATH, '//li[@class="infos__list__item is-rel"]').text
+    except NoSuchElementException as err:
+        print(err)
+        area = ''
+
+    # Room Count
+    try:
+        room_count = driver.find_element(By.XPATH, '//li[@class="infos__list__item is-rel infos__list__item--mlast"]').text
+    except NoSuchElementException as err:
+        print(err)
+        room_count = ''
 
     # Address
-    address = driver.find_element(By.XPATH, '//div[@class="grid boxed map grid grid--direction-column"]/div/p').text
-    address += '\n' + driver.find_element(By.XPATH, '//div[@class="grid boxed map grid grid--direction-column"]/div/p[2]').text
+    try:
+        address = driver.find_element(By.XPATH, '//div[@class="grid boxed map grid grid--direction-column"]/div/p').text
+        address += '\n' + driver.find_element(By.XPATH, '//div[@class="grid boxed map grid grid--direction-column"]/div/p[2]').text
+    except NoSuchElementException as err:
+        print(err)
+        address = ''
 
     # Coordinates
     try:
@@ -31,7 +57,7 @@ def scrape_casa_it(driver):
         coordinates = re.findall(coord_pattern, img_src)[0]
     except NoSuchElementException as err:
         print(err)
-        coordinates = "Could not get coordinates"
+        coordinates = ''
 
     # Features
     features = driver.find_element(By.XPATH, '//ul[@class="chars__feats__list"]').text
