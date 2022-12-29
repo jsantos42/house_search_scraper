@@ -1,5 +1,6 @@
 import email
 import re
+from scraper import scrape_urls
 
 
 def get_house_urls(email_body, pattern):
@@ -17,9 +18,6 @@ def check_mailbox(imap, website):
         msg = email.message_from_bytes(msg[1])
         body = msg.get_payload(decode=True).decode()
         urls = get_house_urls(body, website['url_pattern'])
+        scrape_urls(urls, website)
     imap.close()
     imap.logout()
-
-    # with open('body.txt') as file:
-    #     urls = get_house_urls(file.read())
-    #     print(urls)
