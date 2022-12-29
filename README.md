@@ -18,7 +18,8 @@ Install the dependencies using the [requirements](requirements.txt) file, or ind
 
 
 ## Sources:
-- [reading emails with python](https://www.thepythoncode.com/article/reading-emails-in-python)
-- [imaplib](https://docs.python.org/3/library/imaplib.html)
-- [regex](https://www.geeksforgeeks.org/pattern-matching-python-regex)
-- [selenium](https://www.selenium.dev/documentation/webdriver/getting_started/first_script/)
+- [Reading emails with python](https://www.thepythoncode.com/article/reading-emails-in-python)
+- [imaplib package](https://docs.python.org/3/library/imaplib.html)
+- [Regex](https://www.geeksforgeeks.org/pattern-matching-python-regex)
+- [Selenium](https://www.selenium.dev/documentation/webdriver/getting_started/first_script/)
+- [XPath Syntax](https://www.w3schools.com/xml/xpath_syntax.asp)
