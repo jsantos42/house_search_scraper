@@ -105,8 +105,11 @@ def scrape_urls(urls, website):
             print(url)
             print('================================================================================')
             if website['mailbox'] == 'CasaIT':
-                scrape_casa_it(driver)
+                try:
+                    scrape_casa_it(driver)
+                except NoSuchElementException as err:
+                    print(err)
+                    print('Probably got blocked by a captcha')
+                    break
         sys.stdout = original_stdout
     driver.quit()
-
-
