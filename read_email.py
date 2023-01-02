@@ -12,11 +12,12 @@ def get_house_urls(email_body, pattern):
 
 def check_mailbox(imap, website):
     msg_count = int(imap.select(mailbox=website['mailbox'])[1][0])
+    urls = []
     for i in range(msg_count, 0, -1):
         msg = imap.fetch(str(i), "(RFC822)")[1][0]
         msg = email.message_from_bytes(msg[1])
         body = msg.get_payload(decode=True).decode()
-        urls = get_house_urls(body, website['url_pattern'])
-        scrape_urls(urls, website)
+        [urls.append(x) for x in get_house_urls(body, website['url_pattern']) if x not in urls]
+    scrape_urls(urls, website)
     imap.close()
     imap.logout()
