@@ -7,7 +7,6 @@ def get_house_urls(email_body, pattern):
     pattern = re.compile(pattern)
     urls_list = []
     [urls_list.append(x) for x in re.findall(pattern, email_body) if x not in urls_list]
-    print(urls_list)
     return urls_list
 
 
