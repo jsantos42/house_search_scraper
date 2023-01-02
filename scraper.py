@@ -70,12 +70,14 @@ def scrape_casa_it(driver):
     try:
         description = driver.find_element(By.XPATH, '//div[@class="descr__desc"]').text
     except NoSuchElementException:
-        description = driver.find_element(By.XPATH, '//div[@class="descr__desc descr__desc--closed"]').text
-    except NoSuchElementException:
-        description = driver.find_element(By.XPATH, '//div[@class="descr__desc descr__desc--open"]').text
-    except NoSuchElementException as err:
-        print(err)
-        description = "Could not get description"
+        try:
+            description = driver.find_element(By.XPATH, '//div[@class="descr__desc descr__desc--closed"]').text
+        except NoSuchElementException:
+            try:
+                description = driver.find_element(By.XPATH, '//div[@class="descr__desc descr__desc--open"]').text
+            except NoSuchElementException as err:
+                print(err)
+                description = "Could not get description"
 
     print(title, end='\n\n')
     print(price, end='\n\n')
