@@ -87,7 +87,7 @@ def scrape_casa_it(driver):
     print('ADDRESS: ', address, end='\n\n')
     print('COORDINATES: ', coordinates, end='\n\n')
     print('FEATURES: ', features, end='\n\n')
-    print('TITLE: ', description, end='\n\n')
+    print('DESCRIPTION: ', description, end='\n\n')
 
 
 def scrape_urls(urls, website):
