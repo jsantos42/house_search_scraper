@@ -16,8 +16,12 @@ def scrape_casa_it(driver):
     try:
         title = driver.find_element(By.XPATH, '//h1[@class="infos__H1"]').text
     except NoSuchElementException as err:
-        print(err)
-        title = ''
+        if driver.find_element(By.XPATH, '//h1[@class="casa404--t tp-w--l c-txt--secondary"]').text == 'Pagina non trovata':
+            print('No longer available')
+            return
+        else:
+            print(err)
+            title = ''
 
     # Price
     try:
