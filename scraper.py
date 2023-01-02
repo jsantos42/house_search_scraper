@@ -4,6 +4,7 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (NoSuchElementException)
 import re
+import sys
 
 
 # xPaths could go in config.json
@@ -94,14 +95,18 @@ def scrape_urls(urls, website):
     options.add_argument("start-maximized")
     driver = uc.Chrome(options=options)
 
-    for url in urls:
-        # Navigate to webpage
-        driver.get(url)
-        print('\n================================================================================')
-        print(url)
-        print('================================================================================')
-        if website['mailbox'] == 'CasaIT':
-            scrape_casa_it(driver)
+    with open('houses.txt', 'a') as output:
+        original_stdout = sys.stdout
+        sys.stdout = output
+        for url in urls:
+            # Navigate to webpage
+            driver.get(url)
+            print('\n================================================================================')
+            print(url)
+            print('================================================================================')
+            if website['mailbox'] == 'CasaIT':
+                scrape_casa_it(driver)
+        sys.stdout = original_stdout
     driver.quit()
 
 
