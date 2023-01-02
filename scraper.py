@@ -79,14 +79,14 @@ def scrape_casa_it(driver):
                 print(err)
                 description = "Could not get description"
 
-    print(title, end='\n\n')
-    print(price, end='\n\n')
-    print(area, end='\n\n')
-    print(room_count, end='\n\n')
-    print(address, end='\n\n')
-    print(coordinates, end='\n\n')
-    print(features, end='\n\n')
-    print(description, end='\n\n')
+    print('TITLE: ', title, end='\n\n')
+    print('PRICE: ', price, end='\n\n')
+    print('AREA: ', area, end='\n\n')
+    print('ROOM COUNT: ', room_count, end='\n\n')
+    print('ADDRESS: ', address, end='\n\n')
+    print('COORDINATES: ', coordinates, end='\n\n')
+    print('FEATURES: ', features, end='\n\n')
+    print('TITLE: ', description, end='\n\n')
 
 
 def scrape_urls(urls, website):
@@ -97,6 +97,9 @@ def scrape_urls(urls, website):
     for url in urls:
         # Navigate to webpage
         driver.get(url)
+        print('\n================================================================================')
+        print(url)
+        print('================================================================================')
         if website['mailbox'] == 'CasaIT':
             scrape_casa_it(driver)
     driver.quit()
