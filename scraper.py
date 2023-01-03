@@ -9,7 +9,7 @@ import csv
 
 def scrape_casa_it(driver, url):
     # Wait for the page to load the captcha
-    driver.implicitly_wait(7)
+    driver.implicitly_wait(5)
 
     # Title
     try:
