@@ -7,8 +7,6 @@ import re
 import sys
 
 
-# xPaths could go in config.json
-
 def scrape_casa_it(driver):
     # Wait for the page to load the captcha
     driver.implicitly_wait(7)
