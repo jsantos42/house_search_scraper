@@ -4,10 +4,10 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import (NoSuchElementException)
 import re
-import sys
+import csv
 
 
-def scrape_casa_it(driver):
+def scrape_casa_it(driver, url):
     # Wait for the page to load the captcha
     driver.implicitly_wait(7)
 
@@ -77,37 +77,25 @@ def scrape_casa_it(driver):
             except NoSuchElementException as err:
                 print(err)
                 description = "Could not get description"
-
-    print('TITLE: ', title, end='\n\n')
-    print('PRICE: ', price, end='\n\n')
-    print('AREA: ', area, end='\n\n')
-    print('ROOM COUNT: ', room_count, end='\n\n')
-    print('ADDRESS: ', address, end='\n\n')
-    print('COORDINATES: ', coordinates, end='\n\n')
-    print('FEATURES: ', features, end='\n\n')
-    print('DESCRIPTION: ', description, end='\n\n')
+    return [url, title, area, room_count, address, coordinates, features, description]
 
 
 def scrape_urls(urls, website):
     options = webdriver.ChromeOptions()
     options.add_argument("start-maximized")
     driver = uc.Chrome(options=options)
-
-    with open('houses.txt', 'a') as output:
-        original_stdout = sys.stdout
-        sys.stdout = output
+    with open('houses.csv', 'a', newline='') as output:
+        writer = csv.writer(output, delimiter=',', quoting=csv.QUOTE_ALL, doublequote=True)
+        writer.writerow(['URL', 'Title', 'Price', 'Area', 'Room Count', 'Address', 'Coordinates', 'Features', 'Description'])
         for url in urls:
             # Navigate to webpage
             driver.get(url)
-            print('\n================================================================================')
-            print(url)
-            print('================================================================================')
             if website['mailbox'] == 'CasaIT':
                 try:
-                    scrape_casa_it(driver)
+                    info = scrape_casa_it(driver, url)
+                    writer.writerow(info)
                 except NoSuchElementException as err:
                     print(err)
                     print('Probably got blocked by a captcha')
                     break
-        sys.stdout = original_stdout
     driver.quit()
